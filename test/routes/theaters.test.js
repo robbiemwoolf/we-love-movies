@@ -1,23 +1,23 @@
-const request = require("supertest");
+const request = require("supertest")
 
-const app = require("../../src/app");
-const db = require("../../src/db/connection");
+const app = require("../../src/app")
+const db = require("../../src/db/connection")
 
 describe("Theater Routes", () => {
   beforeAll(() => {
     return db.migrate
       .forceFreeMigrationsLock()
       .then(() => db.migrate.rollback(null, true))
-      .then(() => db.migrate.latest());
-  });
+      .then(() => db.migrate.latest())
+  })
 
   beforeEach(() => {
-    return db.seed.run();
-  });
+    return db.seed.run()
+  })
 
   afterAll(async () => {
-    return await db.migrate.rollback(null, true).then(() => db.destroy());
-  });
+    return await db.migrate.rollback(null, true).then(() => db.destroy())
+  })
 
   describe("GET /theaters", () => {
     test("should return a list of all theaters, including the 'movies' each theatre is showing", async () => {
@@ -35,19 +35,19 @@ describe("Theater Routes", () => {
             rating: "PG",
           }),
         ]),
-      };
+      }
 
-      const response = await request(app).get("/theaters");
+      const response = await request(app).get("/theaters")
 
-      expect(response.body.error).toBeUndefined();
+      expect(response.body.error).toBeUndefined()
 
       expect(response.body.data).toEqual(
         expect.arrayContaining([
           expect.objectContaining(expectedHollywoodTheatre),
         ])
-      );
-      expect(response.body.data[0].movies).toHaveLength(16);
-      expect(response.body.data).toHaveLength(3);
-    });
-  });
-});
+      )
+      expect(response.body.data[0].movies).toHaveLength(16)
+      expect(response.body.data).toHaveLength(3)
+    })
+  })
+})

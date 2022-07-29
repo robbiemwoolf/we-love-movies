@@ -1,10 +1,10 @@
-const path = require("path");
+const path = require("path")
 
-require("dotenv").config();
+require("dotenv").config()
 
 const {
   DATABASE_URL = "postgresql://postgres@localhost/postgres",
-} = process.env;
+} = process.env
 
 module.exports = {
   development: {
@@ -44,4 +44,4 @@ module.exports = {
     },
     useNullAsDefault: true,
   },
-};
+}

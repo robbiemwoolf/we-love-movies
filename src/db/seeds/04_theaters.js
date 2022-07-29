@@ -24,5 +24,5 @@ exports.seed = function (knex) {
       state: "OR",
       zip: "97223",
     },
-  ]);
-};
+  ])
+}

@@ -35,5 +35,5 @@ exports.seed = function (knex) {
       surname: "Patil",
       organization_name: "Independent (UK)",
     },
-  ]);
-};
+  ])
+}

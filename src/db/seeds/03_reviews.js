@@ -20,7 +20,7 @@ Subsedit tantaque vulnera totiens aptos vivit digna pectoraque mutua. Duro ante
 tibi perhorruit praedelassat simulat turis loco hunc dederat viscera scilicet
 transitus quam longius aenea, concussaque hoc mille.
 
-Ut erat. Tibi Themin corpore saepes.`;
+Ut erat. Tibi Themin corpore saepes.`
 
 const generateReviews = (criticIds, movieIds) => {
   return movieIds
@@ -36,7 +36,7 @@ const generateReviews = (criticIds, movieIds) => {
     })
     .reduce((a, b) => a.concat(b), [])
     .filter((reviews) => reviews.content);
-};
+}
 
 exports.seed = async function (knex) {
   const criticIds = await knex("critics").select("critic_id");
@@ -44,4 +44,4 @@ exports.seed = async function (knex) {
 
   const reviews = generateReviews(criticIds, movieIds);
   return knex("reviews").insert(reviews);
-};
+}
