@@ -1,9 +1,14 @@
 if (process.env.USER) require("dotenv").config()
+
 const express = require("express")
 const cors = require('cors')
 
-// require routers
+const errorHandler = require("./utils/errors/errorHandler")
+const notFound = require("./utils/errors/notFound")
+
 const moviesRouter = require('./routes/movies/movies.router')
+const theatersRouter = require('./routes/theaters/theaters.router')
+const reviewsRouter = require('./routes/reviews/reviews.router')
 
 const app = express()
 
@@ -11,17 +16,11 @@ app.use(cors())
 app.use(express.json())
 
 app.get('/movies', moviesRouter)
+app.get('/theaters', theatersRouter)
+app.get('/reviews/:reviewId', reviewsRouter)
 
-// Not found handler
-app.use((req, res, next) => {
-    next({ status: 404, message: `Not found: ${req.originalUrl}` })
-})
+app.use(notFound)
 
-// Error handler
-app.use((error, req, res, next) => {
-    console.error(error)
-    const { status = 500, message = "Something went wrong!" } = error
-    res.status(status).json({ error: message })
-})
+app.use(errorHandler)
 
 module.exports = app

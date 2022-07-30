@@ -1,3 +1,9 @@
 GET http://localhost:5000/movies
 
 ###
+
+GET http://localhost:5000/theaters
+
+###
+
+GET http://localhose:5000/reviews/1
