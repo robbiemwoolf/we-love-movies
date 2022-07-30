@@ -2,17 +2,21 @@ if (process.env.USER) require("dotenv").config()
 const express = require("express")
 const cors = require('cors')
 
+// require routers
+const moviesRouter = require('./routes/movies/movies.router')
+
 const app = express()
 
-
+app.use(cors())
 app.use(express.json())
+
+app.get('/movies', moviesRouter)
 
 // Not found handler
 app.use((req, res, next) => {
     next({ status: 404, message: `Not found: ${req.originalUrl}` })
 })
 
-// Error handler
 // Error handler
 app.use((error, req, res, next) => {
     console.error(error)
