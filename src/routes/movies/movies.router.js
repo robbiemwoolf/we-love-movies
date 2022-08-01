@@ -6,6 +6,7 @@ router
     .route("/:movieId/theaters")
     .get(controller.listTheaters)
     .all(methodNotAllowed)
+
 router
     .route("/:movieId/reviews")
     .get(controller.listReviews)

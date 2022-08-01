@@ -3,7 +3,7 @@ const controller = require('./theaters.controller')
 const methodNotAllowed = require('../../utils/errors/methodNotAllowed')
 
 router
-    .route("/theaters")
+    .route('/')
     .get(controller.list)
     .all(methodNotAllowed)
 

@@ -2,8 +2,10 @@ GET http://localhost:5000/movies
 
 ###
 
-GET http://localhost:5000/theaters
+GET http://localhost:5000/movies?is_showing=true
 
 ###
 
-GET http://localhose:5000/reviews/1
+GET http://localhost:5000/movies/1
+
+###
