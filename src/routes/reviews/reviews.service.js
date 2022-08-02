@@ -1,17 +1,36 @@
 const knex = require('../../db/connection')
 
-function update(updatedReview) {
+function list() {
     return knex('reviews')
-        .select('*')
-        .where({ review_id: updatedReview.review_id })
-        .update(updatedReview, '*')
 }
 
-function destroy(review_id) {
-    return knex('reviews').where({ review_id }).del()
+function read(reviewId) {
+    return knex('reviews')
+        .where({ review_id: reviewId })
+}
+
+function update(updatedReview, reviewId) {
+    return knex('reviews')
+        .select('*')
+        .where({ review_id: reviewId })
+        .update({ ...updatedReview, updated_at: knex.fn.now() })
+        .then((updatedRecords) => updatedRecords[0] )
+}
+
+function getCritic(criticId) {
+    return knex('critics')
+        .select('*')
+        .where({ critic_id: criticId })
+}
+
+function destroy(reviewId) {
+    return knex('reviews').where({ review_id: reviewId }).del()
 }
 
 module.exports = {
+    list,
+    read,
     update,
+    getCritic,
     delete: destroy,
 }

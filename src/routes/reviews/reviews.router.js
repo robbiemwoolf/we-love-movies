@@ -3,12 +3,10 @@ const controller = require('./reviews.controller')
 const methodNotAllowed = require('../../utils/errors/methodNotAllowed')
 
 router
-    .route("/reviews/:reviewId")
+    .route("/")
     .get(controller.read)
     .put(controller.update)
     .delete(controller.delete)
     .all(methodNotAllowed)
-
-router.router('/').all(methodNotAllowed)
 
 module.exports = router
