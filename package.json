@@ -1,9 +1,13 @@
 {
-  "name": "project-movie-back-end",
+  "name": "we-love-movies-backend-rw",
   "version": "1.0.0",
-  "description": "zid-be-project-movie-01-qualified",
-  "main": "src/app.js",
+  "engines": {
+    "node": "12.13.0"
+  },
+  "description": "backend thinkful project",
+  "main": "src/server.js",
   "scripts": {
+    "client": "npm start --prefix client",
     "docker:build": "docker image build . -t thinkful-ed/zid-be-project-movie-01-qualified",
     "docker:run": "docker run --rm -it -p 5000:5000 thinkful-ed/zid-be-project-movie-01-qualified",
     "docker:stop": "docker stop $(docker ps -q)",
@@ -14,7 +18,7 @@
     "rollback": "knex migrate:rollback",
     "seed": "knex seed:run",
     "start": "node src/server.js",
-    "start:dev": "nodemon src/server.js",
+    "server": "nodemon src/server.js",
     "start:solution": "docker-compose up --build",
     "test": "jest",
     "test:watch": "jest --watch",
