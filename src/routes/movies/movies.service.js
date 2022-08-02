@@ -1,9 +1,11 @@
 const knex = require('../../db/connection')
 
+// get movies
 function list() {
     return knex('movies').select('*')
 }
 
+// check if movie is showing
 function listIsShowing() {
     return knex('movies as m')
         .join('movies_theaters as mt', 'm.movie_id', 'mt.movie_id' )
@@ -12,6 +14,7 @@ function listIsShowing() {
         .groupBy('m.movie_id')
 }
 
+// get matching movie
 function read(movieId) {
     return knex("movies")
         .select("*")
@@ -19,6 +22,7 @@ function read(movieId) {
         .first()
 }
 
+// get theaters that are showing matching movie
 function listTheaters(movieId) {
     return knex('movies as m')
         .join('movies_theaters as mt', 'mt.movie_id', 'm.movie_id')
@@ -27,12 +31,14 @@ function listTheaters(movieId) {
         .where({ 'm.movie_id': movieId })      
 }
 
-function getCritics(criticId) {
+// get matching critic
+function getCritic(criticId) {
     return knex('critics')
         .select('*')
         .where({ 'critic_id': criticId })
 }
 
+// get reviews for matching movie
 function listReviews(movieId) {
     return knex('reviews as r')
         .join('movies as m', 'm.movie_id', 'r.movie_id')
@@ -45,6 +51,6 @@ module.exports = {
     listIsShowing,
     read,
     listTheaters,
-    getCritics,
+    getCritic,
     listReviews,
 }

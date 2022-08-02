@@ -1,10 +1,11 @@
 const knex = require('../../db/connection')
 
+// get theaters
 function list() {
-    // TODO: return all the theaters and, the movies playing at each theatre
    return knex('theaters').select('*')
 }
 
+// get movies showing at matching theater
 function getMovies(theaterId) {
     return knex('theaters as t')
         .join('movies_theaters as mt', 't.theater_id', 'mt.theater_id')
