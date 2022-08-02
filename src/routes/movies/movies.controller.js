@@ -31,7 +31,6 @@ async function read(req, res) {
 }
 
 async function listTheaters(req, res) {
-    //const { movieId } = req.params
     const movieId = res.locals.movie.movie_id
     const response = await moviesService.listTheaters(movieId)
     res.json({ data: response })
