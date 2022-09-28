@@ -1,11 +1,11 @@
-if (process.env.USER) require("dotenv").config()
+if (process.env.USER) require('dotenv').config()
 
-const express = require("express")
+const express = require('express')
 const cors = require('cors')
 
 // require routers and error handlers
-const errorHandler = require("./utils/errors/errorHandler")
-const notFound = require("./utils/errors/notFound")
+const errorHandler = require('./utils/errors/errorHandler')
+const notFound = require('./utils/errors/notFound')
 const moviesRouter = require('./routes/movies/movies.router')
 const theatersRouter = require('./routes/theaters/theaters.router')
 const reviewsRouter = require('./routes/reviews/reviews.router')
